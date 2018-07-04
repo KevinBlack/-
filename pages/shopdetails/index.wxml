@@ -1,0 +1,42 @@
+<!--pages/shopdetails/index.wxml-->
+<view class='shop-details'>
+  <view class='list-item'>
+    <image src='{{info.image_path?"https://www.koocv.com"+info.image_path: ""}}' class='list-img'></image>
+    <view class='list-info'>
+      <view class='list-title'>{{info.title}}</view>
+      <view class='clear'>
+        <view class='list-score'>
+          <view class='score' style="width: {{info.score*10}}%;"></view>
+        </view>
+        <view class='list-price'> ￥{{info.price}}/人</view>
+      </view>
+      <view class='shop-score'>
+        <text>环境：{{info.environment}}</text>
+        <text>服务：{{info.service}}</text>
+      </view>
+      <view class='list-position'>
+          {{info.place}} {{info.classify}}
+      </view>
+    </view>
+  </view>
+  <view class='shop-aside iconfont icon-right'>
+    <text class='iconfont icon-shijian'>{{info.shopHours}}</text>
+    <text class='iconfont icon-wifi' wx:if="{{info.hasWifi!=='0'}}">WIFI</text>
+    <text class='iconfont icon-shu' wx:if="{{info.hasSight!=='0'}}">景观位</text>
+    <text class='iconfont icon-baoxiang' wx:if="{{info.hasBox!=='0'}}">包厢</text>
+    <text class='iconfont icon-shafa' wx:if="{{info.hasSofa!=='0'}}">沙发</text>
+    <text class='iconfont icon-baobaoyi' wx:if="{{info.hasBabyChair!=='0'}}">宝宝椅</text>
+  </view>
+  <view class='shop-position iconfont icon-i-location'>
+    <view class='shop-address'>{{address}}</view>
+    <block wx:if="{{hasLocationAuth}}">
+      <view class='shop-dis' wx:if="{{distance!==-1}}">距您步行{{distance || '--'}}m</view>
+      <view class='shop-dis' wx:else>距离过长</view>
+    </block>
+
+    <button wx:else open-type="openSetting">授权位置</button>
+  </view>
+</view>
+<button type='default' class='btn' bind:tap="onTapFav">
+  {{favID? '取消收藏' : '收藏店铺'}}
+</button>

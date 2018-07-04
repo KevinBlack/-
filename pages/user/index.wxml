@@ -1,0 +1,24 @@
+<!--pages/user/index.wxml-->
+<view class='user-info'>
+    <button
+      type='default'
+      class='btn'
+      wx:if="{{!hasLogin}}"
+      open-type="getUserInfo"
+      bindgetuserinfo="onGetUserInfo"
+    >获取登录授权</button>
+
+    <view class='user' wx:else>
+      <image src='{{user.avatarUrl}}' class='user-photo'></image>
+      <view class='user-txt'>
+        <text>{{user.nickName}}</text>
+        <text>{{user.gender===1 ? '男' : '女'}}</text>
+      </view>
+      <view class='user-txt'>
+        <text>{{user.country}}</text>
+      </view>
+    </view>
+</view>
+<view class='user-list' wx:if="{{hasLogin}}">
+  <navigator url='/pages/collect/index' class='iconfont icon-right'>收藏列表</navigator>
+</view>

@@ -1,0 +1,6 @@
+<!--pages/collent/index.wxml-->
+<import src='/common/template/list.wxml' />
+<view class='page'>
+  <template is='list' data="{{list}}"/>
+  <!-- <view class='load-more'>正在加载更多内容……</view> -->
+</view>

@@ -1,0 +1,71 @@
+<!--pages/citylist/index.wxml-->
+
+<scroll-view
+  scroll-y
+  enable-back-to-top
+  scroll-into-view="{{scrollToID}}"
+>
+
+  <view class='city-list'>
+
+    <view
+      class='city-list-item'
+      wx:if="{{hasAuthLocation}}"
+    >{{locateCity}}<text class="locate-type">GPS定位</text></view>
+    <button
+      wx:else
+      open-type="openSetting"
+    >打开位置授权</button>
+  </view>
+
+  <block wx:if="{{historyCity.length}}">
+    <view class='city-index' id="city-to-history">历史访问</view>
+    <view class='city-hot' bind:tap="onSelectCity">
+      <view
+        class='city-hot-item'
+        data-name="{{item}}"
+        wx:for="{{historyCity}}"
+      >{{item}}</view>
+    </view>
+  </block>
+
+
+  <view class='city-index' id="city-to-hot">热门城市</view>
+  <view class='city-hot' bind:tap="onSelectCity">
+    <view
+      class='city-hot-item'
+      data-name="{{item}}"
+      wx:for="{{['北京', '成都', '重庆', '广州', '杭州', '南京', '上海', '深圳', '苏州', '天津', '武汉', '西安']}}"
+    >{{item}}</view>
+  </view>
+
+  <view wx:for="{{cityData}}" wx:key="letter" bind:tap="onSelectCity">
+    <view class='city-index' id="city-to-letter-{{item.letter}}">{{item.letter}}</view>
+    <view class='city-list'>
+      <view
+        class='city-list-item'
+        wx:for="{{item.citys}}"
+        data-name="{{item}}"
+      >{{item}}</view>
+    </view>
+  </view>
+
+  <view class='city-index-list'>
+    <view
+      class='city-index-list-inner'
+      bind:touchstart="onLetterTap"
+      catch:touchmove="onLetterTouchMove"
+    >
+      <view data-type="fastCheck" id="history" class="sel-item" wx:if="{{historyCity.length}}">历史</view>
+      <view data-type="fastCheck" id="hot" class="sel-item">热门</view>
+      <view
+        wx:for="{{cityData}}"
+        data-type="fastCheck"
+        id="letter-{{item.letter}}"
+        class="sel-item"
+      >{{item.letter}}</view>
+
+    </view>
+  </view>
+
+</scroll-view>

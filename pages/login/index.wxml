@@ -1,0 +1,8 @@
+<!--pages/login/index.wxml-->
+<view class='login-text'>只有授权之后，才能进行进一步使用</view>
+<button
+  type='default'
+  class='btn'
+  open-type="getUserInfo"
+  bindgetuserinfo="onGetUserInfo"
+>请授权后使用</button>

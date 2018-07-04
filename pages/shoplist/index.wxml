@@ -1,0 +1,49 @@
+<!--pages/shoplist/index.wxml-->
+<wxs module="sortVal">
+  module.exports = function(sort){
+    var val = '';
+    if(sort==='distance') val = '距离';
+    if(sort==='score') val = '评分';
+    return val;
+  }
+</wxs>
+
+<import src='/common/template/list.wxml' />
+<view class='page'>
+  <view class='list-nav'>
+    <text
+      class='iconfont icon-down-trangle-copy {{filterType==="range"? "active": ""}}'
+      bind:tap="onSelectTap"
+      data-type="range"
+    >{{distance}}m</text>
+    <text class='ico'>|</text>
+    <text
+      class='iconfont icon-down-trangle-copy {{filterType==="sort"? "active": ""}}'
+      bind:tap="onSelectTap"
+      data-type="sort"
+    >{{sortVal(sort)}}</text>
+  </view>
+  <view class='shopList'>
+    <template is='list' data="{{list: shoplist}}"/>
+  </view>
+  <view class='load-more' wx:if="{{isListLoading}}">正在加载更多内容……</view>
+  <view class='load-more' wx:if="{{isLoadedAll}}">没有更多内容</view>
+  <view
+    class='range options {{filterType==="range"? "show": ""}}'
+    bind:tap="onValueTap"
+    data-type="range"
+  >
+    <view class="{{distance==='500'?'active':''}}" data-value="500">500米</view>
+    <view class="{{distance==='1000'?'active':''}}" data-value="1000">1000米</view>
+    <view class="{{distance==='2000'?'active':''}}" data-value="2000">2000米</view>
+  </view>
+  <view
+    class='sort options {{filterType==="sort"? "show": ""}}'
+    bind:tap="onValueTap"
+    data-type="sort"
+  >
+    <view class="{{sort==='score'?'active':''}}" data-value="score">根据评分排序</view>
+    <view class="{{sort==='distance'?'active':''}}" data-value="distance">根据距离排序</view>
+  </view>
+  <view class="mask" wx:if="{{!!filterType}}"></view>
+</view>
