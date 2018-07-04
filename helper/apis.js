@@ -113,8 +113,8 @@ const apis = rawNameArr.reduce( (accu,elt)=>{
 
 // qqwx 地图 api
 apis.createQQMap =()=>{
-  // key 写上自己去腾讯位置服务申请的  密钥
-  let ins = new QQMapWX({key: ""});
+  
+  let ins = new QQMapWX({ key: "IWVBZ-DZXC6-I7HSC-ETXEB-KAUOJ-2IBG5simulation"});
 
   return [
     'search',
