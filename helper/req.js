@@ -4,7 +4,7 @@ const baseURL = 'https://www.koocv.com';
 
 let get = (op={})=>{
   return api.request({
-      url: baseURL + op.path,
+    url: baseURL + op.path,
     ...op,
     method: 'GET'
   }).then(res=>res.data)
@@ -22,7 +22,6 @@ let post = (op={})=>{
     method: 'POST'
   }).then(res=>res.data);
 };
-
 
 exports.getShops = (data={},q)=>{
   return post({

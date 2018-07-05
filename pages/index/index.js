@@ -38,7 +38,7 @@ Page({
     }
   },
 
-  onReachBottom(){
+  onReachBottom(){ //下拉刷新，点击顶部返回 top
 
     let {page, guessLike, isListLoading, isLoadedAll} = this.data;
 

@@ -26,6 +26,7 @@ Page({
     });
     req.getShopDetail(query.id)
     .then(data=>{
+      console.log(data)
       if(!data.error){
         this.setData({
           info: data.info
